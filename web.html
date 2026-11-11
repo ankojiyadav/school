@@ -1,1465 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sri Bhuwaneshwari Matric School</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            overflow-x: hidden;
-        }
-        
-        /* Header Styles */
-        .top-bar {
-            background-color: #043d72;
-            color: white;
-            padding: 8px 0;
-            font-size: 14px;
-        }
-        
-        .top-bar-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 15px;
-        }
-        
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            margin-right: 15px;
-        }
-        
-        .social-icons a {
-            color: white;
-            text-decoration: none;
-            margin-left: 10px;
-        }
-        
-        /* Navigation */
-        .header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-        }
-        
-        .logo img {
-            height: 100px;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-menu li {
-            position: relative;
-            margin-left: 25px;
-        }
-        
-        .nav-menu li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            font-size: 16px;
-            padding: 8px 0;
-            display: block;
-            transition: 0.3s;
-        }
-        
-        .nav-menu li a:hover {
-            color: #043d72;
-        }
-        
-        /* Hero Section */
-        .hero-section {
-            position: relative;
-            height: 600px;
-            overflow: hidden;
-        }
-        
-        .hero-slider {
-            height: 100%;
-            width: 100%;
-            position: relative;
-        }
-        
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-        
-        .slide.active {
-            opacity: 1;
-        }
-        
-        .slide-content {
-            max-width: 800px;
-            padding: 0 20px;
-            z-index: 2;
-        }
-        
-        .slide-content h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .slide-content p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-        
-        .btn {
-            background-color: #043d72;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .btn:hover {
-            background-color: #032b4f;
-        }
-        
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.4);
-        }
-        
-        /* About Section */
-        .about-section {
-            padding: 80px 0;
-            background-color: #f9f9f9;
-        }
-        
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 0 15px;
-        }
-        
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-        }
-        
-        .about-image img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .about-content {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-        }
-        
-        .section-title {
-            font-size: 36px;
-            color: #043d72;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background-color: #f7951e;
-        }
-        
-        .about-content p {
-            margin-bottom: 20px;
-            line-height: 1.6;
-            color: #555;
-        }
-        
-        /* Features Section */
-        .features-section {
-            padding: 80px 0;
-        }
-        
-        .features-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-            text-align: center;
-        }
-        
-        .features-title {
-            font-size: 36px;
-            color: #043d72;
-            margin-bottom: 50px;
-            position: relative;
-            padding-bottom: 15px;
-            display: inline-block;
-        }
-        
-        .features-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: #f7951e;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .feature-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 30px 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            height: 100%;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .feature-icon {
-            font-size: 40px;
-            color: #043d72;
-            margin-bottom: 20px;
-        }
-        
-        .feature-title {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .feature-desc {
-            font-size: 15px;
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        /* Featured Event */
-        .featured-event {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .event-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        .event-box {
-            display: flex;
-            flex-wrap: wrap;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-top: 30px;
-        }
-        
-        .event-text {
-            flex: 1;
-            min-width: 300px;
-            padding: 40px;
-            background-color: #043d72;
-            color: white;
-        }
-        
-        .event-text h3 {
-            font-size: 30px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        .event-text p {
-            line-height: 1.8;
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
-        
-        .event-details {
-            margin-top: 20px;
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .event-images {
-            flex: 1;
-            min-width: 300px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 10px;
-            padding: 20px;
-        }
-        
-        .event-image {
-            overflow: hidden;
-            border-radius: 8px;
-        }
-        
-        .event-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .event-image img:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Values Section */
-        .values-section {
-            padding: 80px 0;
-            background-color: #f9f9f9;
-        }
-        
-        .values-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-            text-align: center;
-        }
-        
-        .values-title {
-            font-size: 36px;
-            color: #043d72;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 15px;
-            display: inline-block;
-        }
-        
-        .values-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: #f7951e;
-        }
-        
-        .values-intro {
-            max-width: 800px;
-            margin: 0 auto 40px;
-            color: #555;
-            line-height: 1.7;
-        }
-        
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .value-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .value-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .value-icon {
-            width: 70px;
-            height: 70px;
-            background-color: #f9f9f9;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: #043d72;
-            font-size: 30px;
-        }
-        
-        .value-title {
-            font-size: 20px;
-            color: #043d72;
-            margin-bottom: 15px;
-        }
-        
-        .value-desc {
-            color: #666;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-        
-        /* Gallery Section */
-        .gallery-section {
-            padding: 80px 0;
-            background-color: #f9f9f9;
-        }
-        
-        .gallery-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-            text-align: center;
-        }
-        
-        .gallery-title {
-            font-size: 36px;
-            color: #043d72;
-            margin-bottom: 50px;
-            position: relative;
-            padding-bottom: 15px;
-            display: inline-block;
-        }
-        
-        .gallery-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: #f7951e;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 8px;
-            height: 200px;
-            position: relative;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        /* Team Section */
-        .team-section {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .team-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-            text-align: center;
-        }
-        
-        .team-title {
-            font-size: 36px;
-            color: #043d72;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 15px;
-            display: inline-block;
-        }
-        
-        .team-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: #f7951e;
-        }
-        
-        .team-intro {
-            max-width: 800px;
-            margin: 0 auto 40px;
-            color: #555;
-            line-height: 1.7;
-        }
-        
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .team-member {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-        
-        .team-member:hover {
-            transform: translateY(-10px);
-        }
-        
-        .member-image {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .member-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .member-info {
-            padding: 20px;
-        }
-        
-        .member-info h4 {
-            font-size: 20px;
-            color: #043d72;
-            margin-bottom: 5px;
-        }
-        
-        .member-position {
-            color: #f7951e;
-            font-size: 14px;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-        
-        .member-bio {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: #043d72;
-            color: white;
-            margin: 0 5px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: #f7951e;
-        }
-        
-        /* Contact Section */
-        .contact-section {
-            padding: 80px 0;
-        }
-        
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        .contact-info-container {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-        }
-        
-        .contact-form-container {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-        }
-        
-        .contact-title {
-            font-size: 36px;
-            color: #043d72;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .contact-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background-color: #f7951e;
-        }
-        
-        .contact-item {
-            display: flex;
-            margin-bottom: 25px;
-        }
-        
-        .contact-icon {
-            font-size: 24px;
-            color: #043d72;
-            margin-right: 15px;
-        }
-        
-        .contact-text h4 {
-            margin-bottom: 5px;
-            color: #333;
-        }
-        
-        .contact-text p, .contact-text a {
-            color: #666;
-            text-decoration: none;
-        }
-        
-        .contact-form {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: #043d72;
-            outline: none;
-        }
-        
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-        
-        /* Footer */
-        .footer {
-            background-color: #043d72;
-            color: white;
-            padding: 60px 0 0;
-        }
-        
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .footer-column h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: #f7951e;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            margin-left: 5px;
-        }
-        
-        .footer-contact p {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .footer-contact i {
-            margin-right: 10px;
-            color: #f7951e;
-        }
-        
-        .footer-bottom {
-            background-color: #032b4f;
-            padding: 20px 0;
-            margin-top: 40px;
-            text-align: center;
-            font-size: 14px;
-        }
-        
-        .footer-bottom p {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* Mobile Menu */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            cursor: pointer;
-        }
-        
-        .menu-toggle span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: #043d72;
-            border-radius: 3px;
-        }
-        
-        @media screen and (max-width: 992px) {
-            .menu-toggle {
-                display: flex;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -300px;
-                background-color: white;
-                height: 100vh;
-                width: 300px;
-                flex-direction: column;
-                padding: 80px 0 30px;
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-                transition: 0.3s;
-                z-index: 99;
-            }
-            
-            .nav-menu.active {
-                right: 0;
-            }
-            
-            .nav-menu li {
-                margin: 0;
-                width: 100%;
-                text-align: center;
-            }
-            
-            .nav-menu li a {
-                padding: 15px;
-                font-size: 18px;
-                border-bottom: 1px solid #eee;
-            }
-            
-            .close-menu {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                font-size: 30px;
-                cursor: pointer;
-                color: #043d72;
-            }
-            
-            .about-container, .contact-container {
-                flex-direction: column;
-            }
-            
-            .history-container, .event-box {
-                flex-direction: column;
-            }
-            
-            .event-images {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media screen and (max-width: 768px) {
-            .top-bar-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .contact-info, .social-icons {
-                margin-bottom: 5px;
-            }
-            
-            .slide-content h1 {
-                font-size: 32px;
-            }
-            
-            .slide-content p {
-                font-size: 16px;
-            }
-            
-            .section-title, .features-title, .gallery-title, .contact-title, .team-title, .values-title {
-                font-size: 28px;
-            }
-            
-            .event-text {
-                padding: 30px;
-            }
-            
-            .event-text h3 {
-                font-size: 24px;
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sri Bhuwaneshwari Matric School</title>
+  <meta name="description" content="Sri Bhuwaneshwari Matric School, Chennai. Nurturing minds, building character, and preparing global citizens for tomorrow.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="assets/images/school_bgm.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="top-bar-container">
-            <div class="contact-info">
-                <a href="mailto:info@sbmatricschool.com"><i class="fas fa-envelope"></i> info@sbmatricschool.com</a>
-                <a href="tel:+919876543210"><i class="fas fa-phone"></i> +91 9876543210</a>
-            </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
+  <div class="progress" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#home"><img src="assets/images/school_bgm.png" alt="">Sri Bhuwaneshwari</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#academics">Academics</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#yoga">Yoga</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="admission.html">Admissions</a></li>
+      </ul>
+      <a class="btn btn-primary nav-cta" href="admission.html">Apply now</a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero-field" aria-hidden="true"></div>
+      <div class="wrap intro">
+        <img class="logo-mark" src="assets/images/school_bgm.png" alt="Sri Bhuwaneshwari Matric School logo">
+        <p class="eyebrow">Sri Bhuwaneshwari Matric School</p>
+        <h1 class="headline">Where young minds<br><span class="rotator" data-words="grow brilliant.|think boldly.|stand tall.|shine bright."><span class="gradient-text">grow brilliant.</span></span></h1>
+        <p class="subtitle">Nurturing minds, building character, and preparing global citizens for tomorrow's challenges.</p>
+        <div class="cta-row" style="justify-content:center">
+          <a class="btn btn-primary" href="admission.html">Apply for admission</a>
+          <a class="link-arrow" href="#about">Learn more</a>
         </div>
+      </div>
+      <div class="hero-media">
+        <img src="assets/images/site1.jpg" alt="Sri Bhuwaneshwari Matric School campus">
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="wrap stats stagger">
+      <div><div class="stat-num" data-count="23">0</div><div class="stat-label">Asanas in one record</div></div>
+      <div><div class="stat-num" data-timer="1223">00:00</div><div class="stat-label">Minutes to set it</div></div>
+      <div><div class="stat-num" data-count="100" data-suffix="%">0</div><div class="stat-label">Board exam pass rate, 2023</div></div>
+      <div><div class="stat-num" data-count="20" data-suffix="+">0</div><div class="stat-label">Years of leadership experience</div></div>
     </div>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="nav-container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="/assets/images/school_bgm.png" alt="Sri Bhuwaneshwari Matric School">
-                </a>
-            </div>
-            
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            
-            <ul class="nav-menu">
-                <div class="close-menu">&times;</div>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#academics">Academics</a></li>
-                <li><a href="admission.html">Admissions</a></li>
-                <li><a href="#facilities">Facilities</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero-section" id="home">
-        <div class="hero-slider">
-            <div class="slide active" style="background-image: url('/assets/images/site1.jpg')">
-                <div class="overlay"></div>
-                <div class="slide-content">
-                    <h1>Welcome to Sri Bhuwaneshwari Matric School</h1>
-                    <p>Nurturing minds, building character, and preparing global citizens for tomorrow's challenges.</p>
-                    <a href="#about" class="btn">Learn More</a>
-                </div>
-            </div>
-        </div>
+    <!-- About statement -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <p class="eyebrow center reveal">About our school</p>
+        <p class="statement" data-highlight="excellence,growth,confident,compassionate,responsible">
+          We blend traditional values with modern education to create a place for academic excellence, personal growth and cultural awareness — so every child becomes confident, compassionate and responsible.
+        </p>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <div class="about-container">
-            <div class="about-image">
-                <img src="/assets/images/site1.jpg" alt="About Sri Bhuwaneshwari Matric School">
-            </div>
-            <div class="about-content">
-                <h2 class="section-title">About Our School</h2>
-                <p>Welcome to Sri Bhuwaneshwari Matric School, where we blend traditional values with modern educational approaches to create an environment that fosters academic excellence, personal growth, and cultural awareness.</p>
-                <p>Our mission is to provide a holistic education that empowers students to become confident, compassionate, and responsible global citizens. We believe in nurturing each child's unique talents and helping them reach their full potential.</p>
-                <p>We take pride in our special programs such as yoga, which helps students develop physical strength, mental clarity, and emotional balance. Recently, our students showcased their incredible talent by successfully performing 23 asanas in just 20 minutes and 23 seconds - a testament to the hard work put in by both our dedicated teachers and students.</p>
-                <p>Founded with a vision to transform education, Sri Bhuwaneshwari Matric School offers state-of-the-art facilities, experienced faculty, and a curriculum that encourages critical thinking, creativity, and innovation.</p>
-                <a href="#" class="btn">Discover More</a>
-            </div>
+    <!-- Mission split -->
+    <section class="section section-alt">
+      <div class="wrap split">
+        <div class="split-media reveal-scale"><img src="assets/images/sc1.jpg" alt="Students at school events"></div>
+        <div class="reveal">
+          <p class="eyebrow">Our mission</p>
+          <h2 class="title">A holistic education.<br>For every child.</h2>
+          <p>Our mission is to provide a holistic education that empowers students to become confident, compassionate, and responsible global citizens. We believe in nurturing each child's unique talents and helping them reach their full potential.</p>
+          <p>Founded with a vision to transform education, we offer modern facilities, experienced faculty, and a curriculum that encourages critical thinking, creativity, and innovation.</p>
+          <a class="link-arrow" href="#academics">Explore academics</a>
         </div>
+      </div>
     </section>
 
-    <!-- Featured Event -->
-    <section class="featured-event">
-        <div class="event-container">
-            <h2 class="section-title">Featured Achievement</h2>
-            <div class="event-box">
-                <div class="event-text">
-                    <h3>Sri Bhuwaneshwari Matric School Yoga Achievement</h3>
-                    <p>Our school recently held an event that showcased the incredible talent of our yoga students. Maximum students from various age groups participated in the event and successfully performed 23 asanas in 20 minutes and 23 seconds.</p>
-                    <p>It was truly an inspiring sight to see these young minds come together and showcase their skill and dedication to the ancient practice of yoga. The event was a testament to the hard work put in by both teachers and students alike, which is why it was such a success.</p>
-                    <div class="event-details">
-                        <p><strong>Principal:</strong> V K Barvathavarthini, Correspondent & Principal</p>
-                        <p><strong>Record No:</strong> NWR-2023-1039</p>
-                        <p><strong>Date:</strong> 18 March 2023</p>
-                    </div>
-                </div>
-                <div class="event-images">
-                    <div class="event-image">
-                        <img src="/assets/images/sc1.jpg" alt="Yoga Event - Students practicing yoga poses">
-                    </div>
-                    <div class="event-image">
-                        <img src="/assets/images/sc2.jpg" alt="Yoga Event - Group practice">
-                    </div>
-                    <div class="event-image">
-                        <img src="/assets/images/sc3.jpg" alt="Yoga Event - Different pose">
-                    </div>
-                    <div class="event-image">
-                        <img src="/assets/images/sc4.jpg" alt="Yoga Event - Award ceremony">
-                    </div>
-                </div>
+    <!-- Record (sticky scroll) -->
+    <section class="record" id="record" aria-label="National yoga record">
+      <div class="record-track">
+        <div class="record-sticky">
+          <div class="record-bg"><img src="assets/images/y1.jpg" alt=""></div>
+          <div class="record-content">
+            <p class="eyebrow" style="color:#34c770">Featured achievement</p>
+            <h2 class="record-big">23 asanas.<small>In 20 minutes and 23 seconds.</small></h2>
+            <div class="record-meta">
+              <div><b>NWR-2023-1039</b>Record number</div>
+              <div><b>18 March 2023</b>Date</div>
+              <div><b>V K Barvathavarthini</b>Correspondent &amp; Principal</div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="features-container">
-            <h2 class="features-title">Why Choose Us</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="feature-title">Academic Excellence</h3>
-                    <p class="feature-desc">Our rigorous curriculum and dedicated faculty ensure that students achieve their highest academic potential.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="feature-title">Experienced Faculty</h3>
-                    <p class="feature-desc">Our teachers are highly qualified professionals committed to providing quality education.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="feature-title">Modern Facilities</h3>
-                    <p class="feature-desc">State-of-the-art infrastructure that provides an optimal learning environment for students.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3 class="feature-title">Global Perspective</h3>
-                    <p class="feature-desc">Our curriculum incorporates global awareness and prepares students for an interconnected world.</p>
-                </div>
-            </div>
+    <!-- Why choose us: bento -->
+    <section class="section section-alt" id="why">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Why choose us</p>
+          <h2 class="title">Everything a child needs to thrive.</h2>
         </div>
+        <div class="bento stagger">
+          <div class="tile span-4 green">
+            <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3>Academic excellence.</h3>
+            <p>A rigorous curriculum and dedicated faculty help every student reach their highest academic potential.</p>
+          </div>
+          <div class="tile span-2 photo">
+            <img src="assets/images/sc6.jpg" alt="Students presenting science projects">
+            <div class="cap">Hands-on learning</div>
+          </div>
+          <div class="tile span-2">
+            <div class="icon-box"><i class="fa-solid fa-chalkboard-user"></i></div>
+            <h3>Experienced faculty.</h3>
+            <p>Highly qualified teachers committed to quality education.</p>
+          </div>
+          <div class="tile span-2 dark">
+            <div class="icon-box"><i class="fa-solid fa-building-columns"></i></div>
+            <h3>Modern facilities.</h3>
+            <p>Infrastructure that creates the best possible environment for learning.</p>
+          </div>
+          <div class="tile span-2">
+            <div class="icon-box"><i class="fa-solid fa-earth-asia"></i></div>
+            <h3>Global perspective.</h3>
+            <p>Global awareness built in, preparing students for an interconnected world.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Values Section -->
-    <section class="values-section">
-        <div class="values-container">
-            <h2 class="values-title">Our Core Values</h2>
-            <p class="values-intro">At Sri Bhuwaneshwari Matric School, our educational philosophy is guided by a set of core values that shape our approach to teaching and learning. These values form the foundation of our school culture and inform everything we do.</p>
-            
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3 class="value-title">Excellence</h3>
-                    <p class="value-desc">We strive for excellence in all aspects of education, encouraging our students to aim high and achieve their full potential in academics, sports, and co-curricular activities.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3 class="value-title">Compassion</h3>
-                    <p class="value-desc">We nurture empathy and kindness in our students, teaching them to care for others and contribute positively to their communities and the world at large.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3 class="value-title">Integrity</h3>
-                    <p class="value-desc">We uphold the highest standards of honesty, ethics, and moral values, instilling in our students the importance of doing what is right even when no one is watching.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-globe-asia"></i>
-                    </div>
-                    <h3 class="value-title">Global Perspective</h3>
-                    <p class="value-desc">We prepare our students to be responsible global citizens who understand and respect different cultures, perspectives, and environments.</p>
-                </div>
-            </div>
-        </div>
+    <!-- Core values: horizontal scroller -->
+    <section class="section" id="values">
+      <div class="wrap section-head reveal" style="text-align:left;margin-left:auto;margin-right:auto;max-width:1080px">
+        <p class="eyebrow">Our core values</p>
+        <h2 class="title">The values behind<br>everything we do.</h2>
+      </div>
+      <div class="scroller stagger" id="valuesScroller">
+        <article class="value-card" style="background:var(--bg-alt)">
+          <div><div class="num">01</div><i class="fa-solid fa-star big-icon" style="margin-top:22px"></i></div>
+          <div><h3>Excellence</h3><p>We encourage students to aim high and reach their full potential in academics, sports, and co-curricular activities.</p></div>
+        </article>
+        <article class="value-card" style="background:var(--bg-alt)">
+          <div><div class="num">02</div><i class="fa-solid fa-hand-holding-heart big-icon" style="margin-top:22px"></i></div>
+          <div><h3>Compassion</h3><p>We nurture empathy and kindness, teaching students to care for others and contribute to their communities.</p></div>
+        </article>
+        <article class="value-card" style="background:var(--bg-alt)">
+          <div><div class="num">03</div><i class="fa-solid fa-scale-balanced big-icon" style="margin-top:22px"></i></div>
+          <div><h3>Integrity</h3><p>We uphold honesty and strong moral values — doing what is right even when no one is watching.</p></div>
+        </article>
+        <article class="value-card" style="background:var(--bg-alt)">
+          <div><div class="num">04</div><i class="fa-solid fa-globe big-icon" style="margin-top:22px"></i></div>
+          <div><h3>Global perspective</h3><p>We prepare responsible global citizens who respect different cultures, perspectives, and environments.</p></div>
+        </article>
+      </div>
+      <div class="scroller-nav">
+        <button class="circle-btn" data-scroll-target="valuesScroller" data-dir="-1" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="circle-btn" data-scroll-target="valuesScroller" data-dir="1" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="team-section">
-        <div class="team-container">
-            <h2 class="team-title">Our Leadership</h2>
-            <p class="team-intro">Our school is guided by a team of experienced educators and administrators who are passionate about providing quality education and nurturing young minds. They bring their expertise, dedication, and vision to create an environment where students can thrive academically and personally.</p>
-            
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="/assets/images/sc5.jpg" alt="Principal">
-                    </div>
-                    <div class="member-info">
-                        <h4>V K Barvathavarthini</h4>
-                        <div class="member-position">Correspondent & Principal</div>
-                        <div class="member-bio">
-                            With over 20 years of experience in education, Mrs. Barvathavarthini leads our institution with vision and dedication. She believes in nurturing each student's unique potential.
-                        </div>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="/assets/images/sc6.jpg" alt="Vice Principal">
-                    </div>
-                    <div class="member-info">
-                        <h4>Dr. Rajesh Kumar</h4>
-                        <div class="member-position">Vice Principal</div>
-                        <div class="member-bio">
-                            Dr. Kumar oversees academic affairs and curriculum development. His innovative teaching methods have significantly enhanced our students' learning experiences.
-                        </div>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Academics -->
+    <section class="section section-alt" id="academics">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Academics</p>
+          <h2 class="title">A journey from first steps to final exams.</h2>
+          <p class="subtitle">Programs that grow with your child at every stage.</p>
         </div>
+        <div class="journey reveal" aria-hidden="true">
+          <div class="journey-rail"><div class="journey-fill"></div><i class="fa-solid fa-graduation-cap journey-cap"></i></div>
+          <ol class="journey-stops">
+            <li><b>Pre-Primary</b><span>Pre-KG · KG</span></li>
+            <li><b>Primary</b><span>Grades 1–5</span></li>
+            <li><b>Middle School</b><span>Grades 6–8</span></li>
+            <li><b>High School</b><span>Grades 9–12</span></li>
+          </ol>
+        </div>
+        <div class="programs stagger">
+          <div class="program"><i class="fa-solid fa-shapes"></i><h3>Pre-Primary</h3><p>Pre-KG and KG. A joyful start built on play, curiosity and care.</p></div>
+          <div class="program"><i class="fa-solid fa-book-open"></i><h3>Primary</h3><p>Grades 1–5. Strong foundations in language, numbers and thinking.</p></div>
+          <div class="program"><i class="fa-solid fa-flask"></i><h3>Middle School</h3><p>Grades 6–8. Exploring science, ideas and independent learning.</p></div>
+          <div class="program"><i class="fa-solid fa-user-graduate"></i><h3>High School</h3><p>Grades 9–12. Focused preparation for board examinations and beyond.</p></div>
+          <div class="program"><i class="fa-solid fa-medal"></i><h3>Sports</h3><p>Athletics, cricket, badminton and yoga for body and mind.</p></div>
+          <div class="program"><i class="fa-solid fa-masks-theater"></i><h3>Arts &amp; Culture</h3><p>Dance, music and theatre that let every talent shine.</p></div>
+        </div>
+      </div>
     </section>
 
-    <!-- Achievements Section -->
-    <section class="achievements-section" style="padding: 80px 0; background-color: #f9f9f9;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">School Achievements</h2>
-            
-            <div class="achievements-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div class="achievement-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
-                    <div class="achievement-image" style="height: 200px; overflow: hidden;">
-                        <img src="/assets/images/sca1.jpg" alt="Yoga Achievement" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="achievement-content" style="padding: 25px;">
-                        <h3 style="font-size: 20px; color: #043d72; margin-bottom: 15px;">National Yoga Record</h3>
-                        <p style="color: #555; line-height: 1.6; margin-bottom: 15px;">Our students performed 23 asanas in 20 minutes and 23 seconds, setting a remarkable record and earning national recognition for their dedication to yoga.</p>
-                        <div style="color: #777; font-size: 14px;">
-                            <p><strong>Date:</strong> March 18, 2023</p>
-                            <p><strong>Recognition:</strong> National Record</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="achievement-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
-                    <div class="achievement-image" style="height: 200px; overflow: hidden;">
-                        <img src="/assets/images/sca2.jpg" alt="Academic Excellence Award" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="achievement-content" style="padding: 25px;">
-                        <h3 style="font-size: 20px; color: #043d72; margin-bottom: 15px;">100% Pass Percentage</h3>
-                        <p style="color: #555; line-height: 1.6; margin-bottom: 15px;">Our school achieved a remarkable 100% pass percentage in the 10th and 12th standard board examinations, with multiple students scoring above 90%.</p>
-                        <div style="color: #777; font-size: 14px;">
-                            <p><strong>Year:</strong> 2023</p>
-                            <p><strong>Recognition:</strong> District Honor</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="achievement-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
-                    <div class="achievement-image" style="height: 200px; overflow: hidden;">
-                        <img src="/assets/images/sca3.jpg" alt="Sports Championship" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="achievement-content" style="padding: 25px;">
-                        <h3 style="font-size: 20px; color: #043d72; margin-bottom: 15px;">State Sports Champions</h3>
-                        <p style="color: #555; line-height: 1.6; margin-bottom: 15px;">Our school sports team won the State Level Inter-School Sports Championship, demonstrating excellence in athletics, cricket, and badminton.</p>
-                        <div style="color: #777; font-size: 14px;">
-                            <p><strong>Year:</strong> 2022</p>
-                            <p><strong>Recognition:</strong> State Championship</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="achievements-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
-                <div class="achievement-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
-                    <div class="achievement-image" style="height: 200px; overflow: hidden;">
-                        <img src="/assets/images/sca4.jpg" alt="Science Exhibition" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="achievement-content" style="padding: 25px;">
-                        <h3 style="font-size: 20px; color: #043d72; margin-bottom: 15px;">National Science Exhibition</h3>
-                        <p style="color: #555; line-height: 1.6; margin-bottom: 15px;">Our students won first place at the National Science Exhibition for their innovative project on sustainable energy solutions for rural communities.</p>
-                        <div style="color: #777; font-size: 14px;">
-                            <p><strong>Year:</strong> 2023</p>
-                            <p><strong>Recognition:</strong> National First Prize</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="achievement-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
-                    <div class="achievement-image" style="height: 200px; overflow: hidden;">
-                        <img src="/assets/images/sca5.jpg" alt="Cultural Competition" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="achievement-content" style="padding: 25px;">
-                        <h3 style="font-size: 20px; color: #043d72; margin-bottom: 15px;">Cultural Excellence Award</h3>
-                        <p style="color: #555; line-height: 1.6; margin-bottom: 15px;">Our school received the Cultural Excellence Award for outstanding performances in dance, music, and theater at the Inter-School Cultural Festival.</p>
-                        <div style="color: #777; font-size: 14px;">
-                            <p><strong>Year:</strong> 2023</p>
-                            <p><strong>Recognition:</strong> Regional Award</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="achievement-card" style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s;">
-                    <div class="achievement-image" style="height: 200px; overflow: hidden;">
-                        <img src="/assets/images/sca7.jpg" alt="Green School Award" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="achievement-content" style="padding: 25px;">
-                        <h3 style="font-size: 20px; color: #043d72; margin-bottom: 15px;">Green School Award</h3>
-                        <p style="color: #555; line-height: 1.6; margin-bottom: 15px;">Our school was recognized with the Green School Award for implementing sustainable practices, including rainwater harvesting, solar energy, and extensive tree planting.</p>
-                        <div style="color: #777; font-size: 14px;">
-                            <p><strong>Year:</strong> 2022</p>
-                            <p><strong>Recognition:</strong> State Environmental Award</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Leadership -->
+    <section class="section" id="leadership">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Our leadership</p>
+          <h2 class="title">Guided by people who care.</h2>
+          <p class="subtitle">Experienced educators passionate about nurturing young minds.</p>
         </div>
+        <div class="people stagger">
+          <div class="person">
+            <div class="avatar">VK</div>
+            <h3>V K Barvathavarthini</h3>
+            <div class="role">Correspondent &amp; Principal</div>
+            <p>With over 20 years of experience in education, Mrs. Barvathavarthini leads our institution with vision and dedication. She believes in nurturing each student's unique potential.</p>
+          </div>
+          <div class="person">
+            <div class="avatar">RK</div>
+            <h3>Dr. Rajesh Kumar</h3>
+            <div class="role">Vice Principal</div>
+            <p>Dr. Kumar oversees academic affairs and curriculum development. His innovative teaching methods have significantly enhanced our students' learning experiences.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery-section" id="gallery">
-        <div class="gallery-container">
-            <h2 class="gallery-title">Our Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="/assets/images/sc1.jpg" alt="School Gallery - Yoga Practice">
-                </div>
-                <div class="gallery-item">
-                    <img src="/assets/images/sc2.jpg" alt="School Gallery - Classroom Activities">
-                </div>
-                <div class="gallery-item">
-                    <img src="/assets/images/sc3.jpg" alt="School Gallery - Sports Events">
-                </div>
-                <div class="gallery-item">
-                    <img src="/assets/images/sc4.jpg" alt="School Gallery - Cultural Programs">
-                </div>
-                <div class="gallery-item">
-                    <img src="/assets/images/sc5.jpg" alt="School Gallery - Science Exhibition">
-                </div>
-                <div class="gallery-item">
-                    <img src="/assets/images/sc6.jpg" alt="School Gallery - School Campus">
-                </div>
-            </div>
+    <!-- Achievements -->
+    <section class="section section-dark" id="achievements">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">School achievements</p>
+          <h2 class="title">Proud moments.<br>Many of them.</h2>
         </div>
+        <div class="ach-grid stagger">
+          <article class="ach"><span class="chip">National Record</span><h3>National Yoga Record</h3><p>23 asanas in 20 minutes and 23 seconds — national recognition for our students' dedication to yoga.</p><span class="year">18 March 2023</span></article>
+          <article class="ach"><span class="chip">District Honor</span><h3>100% Pass Percentage</h3><p>A 100% pass rate in the 10th and 12th standard board exams, with many students scoring above 90%.</p><span class="year">2023</span></article>
+          <article class="ach"><span class="chip">State Championship</span><h3>State Sports Champions</h3><p>Winners of the State Level Inter-School Sports Championship in athletics, cricket, and badminton.</p><span class="year">2022</span></article>
+          <article class="ach"><span class="chip">National First Prize</span><h3>National Science Exhibition</h3><p>First place for an innovative project on sustainable energy solutions for rural communities.</p><span class="year">2023</span></article>
+          <article class="ach"><span class="chip">Regional Award</span><h3>Cultural Excellence Award</h3><p>Outstanding performances in dance, music, and theatre at the Inter-School Cultural Festival.</p><span class="year">2023</span></article>
+          <article class="ach"><span class="chip">State Environmental Award</span><h3>Green School Award</h3><p>Recognised for rainwater harvesting, solar energy, and extensive tree planting on campus.</p><span class="year">2022</span></article>
+        </div>
+      </div>
+
+      <div class="wrap" style="margin-top:110px">
+        <div class="reveal" style="margin-bottom:34px">
+          <p class="eyebrow">Recognition</p>
+          <h2 class="title" style="margin:0">Awards &amp; certificates.</h2>
+        </div>
+      </div>
+      <div class="scroller stagger" id="awardsScroller" style="grid-auto-columns:min(300px,70%)">
+        <figure class="award-card" data-zoom><img src="assets/images/sca1.jpg" alt="Lions Clubs Best Teacher Award" loading="lazy"></figure>
+        <figure class="award-card" data-zoom><img src="assets/images/sca2.jpg" alt="Greater Chennai Corporation certificate of appreciation" loading="lazy"></figure>
+        <figure class="award-card" data-zoom><img src="assets/images/sca3.jpg" alt="Certificate of appreciation" loading="lazy"></figure>
+        <figure class="award-card" data-zoom><img src="assets/images/sca4.jpg" alt="Certificate of appreciation for the Principal" loading="lazy"></figure>
+        <figure class="award-card" data-zoom><img src="assets/images/sca5.jpg" alt="Principal receiving an award" loading="lazy"></figure>
+        <figure class="award-card" data-zoom><img src="assets/images/sca7.jpg" alt="Nova World Records certificate" loading="lazy"></figure>
+      </div>
+      <div class="scroller-nav">
+        <button class="circle-btn" data-scroll-target="awardsScroller" data-dir="-1" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="circle-btn" data-scroll-target="awardsScroller" data-dir="1" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
     </section>
 
-    <!-- Yoga Program Highlight -->
-    <section class="featured-event" style="background-color: #f9f9f9;">
-        <div class="event-container">
-            <h2 class="section-title">Our Yoga Program</h2>
-            <div class="event-box">
-                <div class="event-text">
-                    <h3>Nurturing Mind, Body, and Spirit Through Yoga</h3>
-                    <p>Our school takes pride in our special yoga program, which is designed to help students develop physical strength, mental clarity, and emotional balance. Under the guidance of experienced instructors, our students learn various asanas and breathing techniques that enhance their overall well-being.</p>
-                    <p>Regular practice of yoga has proven benefits for our students, including improved concentration, reduced stress, better physical fitness, and enhanced self-discipline. These qualities translate into better academic performance and personal growth.</p>
-                    <p>Our yoga program is integrated into the school curriculum and is available to students of all ages. The program has received recognition for its excellence, with our students participating in and winning various competitions at the district, state, and national levels.</p>
-                </div>
-                <div class="event-images">
-                    <div class="event-image">
-                        <img src="/assets/images/y1.jpg" alt="Students in yoga class">
-                    </div>
-                    <div class="event-image">
-                        <img src="/assets/images/y2.jpg" alt="Yoga meditation session">
-                    </div>
-                    <div class="event-image">
-                        <img src="/assets/images/y3.jpg" alt="Yoga competition">
-                    </div>
-                    <div class="event-image">
-                        <img src="/assets/images/y4.jpg" alt="Group yoga practice">
-                    </div>
-                </div>
-            </div>
+    <!-- Yoga program -->
+    <section class="section" id="yoga">
+      <div class="wrap split reverse">
+        <div class="breath reveal-scale"><div class="split-media"><img src="assets/images/y3.jpg" alt="Students performing yoga" loading="lazy" style="aspect-ratio:4/5"></div></div>
+        <div class="reveal">
+          <p class="eyebrow">Our yoga program</p>
+          <h2 class="title">Mind. Body.<br>Spirit.</h2>
+          <p>Our special yoga program helps students develop physical strength, mental clarity, and emotional balance. Under experienced instructors, they learn asanas and breathing techniques that support their overall well-being.</p>
+          <p>Regular practice brings better concentration, less stress, better fitness and self-discipline — qualities that show up in the classroom too. The program is part of the curriculum for students of all ages, and our students compete at district, state, and national levels.</p>
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section" id="contact">
-        <div class="contact-container">
-            <div class="contact-info-container">
-                <h2 class="contact-title">Get In Touch</h2>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h4>Our Location</h4>
-                        <p>123 Education Street, Chennai, Tamil Nadu, India</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h4>Call Us</h4>
-                        <p><a href="tel:+919876543210">+91 9876543210</a></p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h4>Email Us</h4>
-                        <p><a href="mailto:info@sbmatricschool.com">info@sbmatricschool.com</a></p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h4>Office Hours</h4>
-                        <p>Monday - Friday: 8:00 AM - 4:00 PM</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact-form-container">
-                <div class="contact-form">
-                    <h3>Send us a Message</h3>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="Your Phone">
-                        </div>
-                        
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
+    <!-- Gallery -->
+    <section class="section section-alt" id="gallery">
+      <div class="wrap section-head reveal">
+        <p class="eyebrow">Gallery</p>
+        <h2 class="title">Life at Sri Bhuwaneshwari.</h2>
+        <p class="subtitle">Tap any photo to see it larger.</p>
+      </div>
+      <div class="marquee">
+        <div class="marquee-track">
+          <figure data-zoom><img src="assets/images/sc1.jpg" alt="School events" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/sc2.jpg" alt="Yoga practice" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/sc3.jpg" alt="Classroom activities" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/y2.jpg" alt="Yoga on the school ground" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/sc5.jpg" alt="Cultural programmes" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/sc1.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/sc2.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/sc3.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/y2.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/sc5.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
         </div>
+      </div>
+      <div class="marquee reverse">
+        <div class="marquee-track">
+          <figure data-zoom><img src="assets/images/sc6.jpg" alt="Students with science projects" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/y1.jpg" alt="Yoga formation" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/sc4.jpg" alt="Yoga event" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/y3.jpg" alt="Yoga pose" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/site1.jpg" alt="School building" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/sc6.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/y1.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/sc4.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/y3.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+          <figure data-zoom><img src="assets/images/site1.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <h3>About Us</h3>
-                <p>Sri Bhuwaneshwari Matric School is dedicated to providing quality education that nurtures intellect, character, and global awareness in every student.</p>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#academics">Academics</a></li>
-                    <li><a href="admission.html">Admissions</a></li>
-                    <li><a href="#facilities">Facilities</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Programs</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Pre-Primary</a></li>
-                    <li><a href="#">Primary</a></li>
-                    <li><a href="#">Middle School</a></li>
-                    <li><a href="#">High School</a></li>
-                    <li><a href="#">Sports</a></li>
-                    <li><a href="#">Arts & Culture</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <div class="footer-contact">
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Education Street, Chennai, Tamil Nadu, India</p>
-                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
-                    <p><i class="fas fa-envelope"></i> info@sbmatricschool.com</p>
-                </div>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
+    <!-- Admissions CTA -->
+    <section class="section center">
+      <div class="wrap reveal">
+        <p class="eyebrow">Admissions open</p>
+        <h2 class="headline">Begin the <span class="scribble">journey.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 13 C 60 3, 120 18, 180 9 S 270 6, 296 11"/></svg></span></h2>
+        <p class="subtitle" style="max-width:620px;margin:22px auto 32px">Applications are accepted throughout the year, based on seat availability.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="admission.html">Apply now</a>
+          <a class="link-arrow" href="admission.html#fees">View fee structure</a>
         </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2025 Sri Bhuwaneshwari Matric School. All Rights Reserved.</p>
-        </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-menu').classList.add('active');
-        });
-        
-        document.querySelector('.close-menu').addEventListener('click', function() {
-            document.querySelector('.nav-menu').classList.remove('active');
-        });
-        
-        // Basic Slider Functionality
-        let slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        
-        // Uncomment to enable auto slider
-        // setInterval(nextSlide, 5000);
-        
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                document.querySelector('.nav-menu').classList.remove('active');
-            });
-        });
-    </script>
+    <!-- Contact -->
+    <section class="section section-alt" id="contact">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Get in touch</p>
+          <h2 class="title">We'd love to hear from you.</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="info-list stagger">
+            <div class="info-item"><i class="fa-solid fa-location-dot"></i><div><b>Our location</b><span>123 Education Street, Chennai, Tamil Nadu, India</span></div></div>
+            <div class="info-item"><i class="fa-solid fa-phone"></i><div><b>Call us</b><a href="tel:+919876543210">+91 98765 43210</a></div></div>
+            <div class="info-item"><i class="fa-solid fa-envelope"></i><div><b>Email us</b><a href="mailto:info@sbmatricschool.com">info@sbmatricschool.com</a></div></div>
+            <div class="info-item"><i class="fa-solid fa-clock"></i><div><b>Office hours</b><span>Monday – Friday: 8:00 AM – 4:00 PM</span></div></div>
+          </div>
+          <div class="form-card reveal">
+            <h3>Send us a message</h3>
+            <form data-demo>
+              <div class="fields">
+                <div class="field"><input id="c-name" type="text" placeholder=" " required><label for="c-name">Your name</label></div>
+                <div class="field"><input id="c-email" type="email" placeholder=" " required><label for="c-email">Email</label></div>
+                <div class="field full"><input id="c-subject" type="text" placeholder=" "><label for="c-subject">Subject</label></div>
+                <div class="field full"><textarea id="c-msg" placeholder=" " required></textarea><label for="c-msg">Message</label></div>
+              </div>
+              <div style="margin-top:20px"><button class="btn btn-primary" type="submit">Send message</button></div>
+            </form>
+            <div class="form-done" role="status">
+              <i class="fa-solid fa-circle-check"></i>
+              <h3>Thank you.</h3>
+              <p>Your message has been noted. Our office will get back to you soon.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <img src="assets/images/school_bgm.png" alt="">
+        <p>Sri Bhuwaneshwari Matric School is dedicated to providing quality education that nurtures intellect, character, and global awareness in every student.</p>
+      </div>
+      <div class="footer-cols">
+        <div><h4>Explore</h4><ul><li><a href="#about">About us</a></li><li><a href="#academics">Academics</a></li><li><a href="#achievements">Achievements</a></li><li><a href="#gallery">Gallery</a></li></ul></div>
+        <div><h4>Programs</h4><ul><li>Pre-Primary</li><li>Primary</li><li>Middle School</li><li>High School</li><li>Sports</li><li>Arts &amp; Culture</li></ul></div>
+        <div><h4>Admissions</h4><ul><li><a href="admission.html">How to apply</a></li><li><a href="admission.html#fees">Fee structure</a></li><li><a href="admission.html#apply">Application form</a></li><li><a href="admission.html#faq">FAQ</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li>123 Education Street, Chennai</li><li><a href="tel:+919876543210">+91 98765 43210</a></li><li><a href="mailto:info@sbmatricschool.com">info@sbmatricschool.com</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2025</span> Sri Bhuwaneshwari Matric School. All rights reserved.</span>
+        <span>Chennai, Tamil Nadu, India</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lightbox" role="dialog" aria-label="Photo viewer">
+    <button class="circle-btn" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <img src="" alt="">
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
