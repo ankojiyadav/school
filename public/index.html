@@ -34,10 +34,11 @@
   <main>
     <!-- Hero -->
     <section class="hero" id="home">
+      <div class="hero-field" aria-hidden="true"></div>
       <div class="wrap intro">
         <img class="logo-mark" src="assets/images/school_bgm.png" alt="Sri Bhuwaneshwari Matric School logo">
         <p class="eyebrow">Sri Bhuwaneshwari Matric School</p>
-        <h1 class="headline">Where young minds<br><span class="gradient-text">grow brilliant.</span></h1>
+        <h1 class="headline">Where young minds<br><span class="rotator" data-words="grow brilliant.|think boldly.|stand tall.|shine bright."><span class="gradient-text">grow brilliant.</span></span></h1>
         <p class="subtitle">Nurturing minds, building character, and preparing global citizens for tomorrow's challenges.</p>
         <div class="cta-row" style="justify-content:center">
           <a class="btn btn-primary" href="admission.html">Apply for admission</a>
@@ -52,7 +53,7 @@
     <!-- Stats -->
     <div class="wrap stats stagger">
       <div><div class="stat-num" data-count="23">0</div><div class="stat-label">Asanas in one record</div></div>
-      <div><div class="stat-num">20:23</div><div class="stat-label">Minutes to set it</div></div>
+      <div><div class="stat-num" data-timer="1223">00:00</div><div class="stat-label">Minutes to set it</div></div>
       <div><div class="stat-num" data-count="100" data-suffix="%">0</div><div class="stat-label">Board exam pass rate, 2023</div></div>
       <div><div class="stat-num" data-count="20" data-suffix="+">0</div><div class="stat-label">Years of leadership experience</div></div>
     </div>
@@ -173,6 +174,15 @@
           <h2 class="title">A journey from first steps to final exams.</h2>
           <p class="subtitle">Programs that grow with your child at every stage.</p>
         </div>
+        <div class="journey reveal" aria-hidden="true">
+          <div class="journey-rail"><div class="journey-fill"></div><i class="fa-solid fa-graduation-cap journey-cap"></i></div>
+          <ol class="journey-stops">
+            <li><b>Pre-Primary</b><span>Pre-KG · KG</span></li>
+            <li><b>Primary</b><span>Grades 1–5</span></li>
+            <li><b>Middle School</b><span>Grades 6–8</span></li>
+            <li><b>High School</b><span>Grades 9–12</span></li>
+          </ol>
+        </div>
         <div class="programs stagger">
           <div class="program"><i class="fa-solid fa-shapes"></i><h3>Pre-Primary</h3><p>Pre-KG and KG. A joyful start built on play, curiosity and care.</p></div>
           <div class="program"><i class="fa-solid fa-book-open"></i><h3>Primary</h3><p>Grades 1–5. Strong foundations in language, numbers and thinking.</p></div>
@@ -249,7 +259,7 @@
     <!-- Yoga program -->
     <section class="section" id="yoga">
       <div class="wrap split reverse">
-        <div class="split-media reveal-scale"><img src="assets/images/y3.jpg" alt="Students performing yoga" loading="lazy" style="aspect-ratio:4/5"></div>
+        <div class="breath reveal-scale"><div class="split-media"><img src="assets/images/y3.jpg" alt="Students performing yoga" loading="lazy" style="aspect-ratio:4/5"></div></div>
         <div class="reveal">
           <p class="eyebrow">Our yoga program</p>
           <h2 class="title">Mind. Body.<br>Spirit.</h2>
@@ -300,7 +310,7 @@
     <section class="section center">
       <div class="wrap reveal">
         <p class="eyebrow">Admissions open</p>
-        <h2 class="headline">Begin the journey.</h2>
+        <h2 class="headline">Begin the <span class="scribble">journey.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 13 C 60 3, 120 18, 180 9 S 270 6, 296 11"/></svg></span></h2>
         <p class="subtitle" style="max-width:620px;margin:22px auto 32px">Applications are accepted throughout the year, based on seat availability.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="admission.html">Apply now</a>
